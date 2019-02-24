@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Kat-WO</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -81,17 +81,44 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Kat-WO
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                @if (Auth::guard('user')->user())
+                  <div class="links m-b-md">
+                    <a href="{{ url('/home') }}">団員専用のHomeへ</a>
+                  </div>
+                  <div class="links m-b-md">
+                      <a href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                          管理者モードで利用するには一旦ログアウトしてください
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                  </div>
+                @elseif (Auth::guard('admin')->user())
+                  <div class="links m-b-md">
+                    <a href="{{ url('/admin/home') }}">管理者のホームへ</a>
+                  </div>
+                  <div class="links m-b-md">
+                    <a href="{{ route('admin.logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('admin-logout-form').submit();">
+                        団員モードで利用するには一旦ログアウトしてください
+                    </a>
+                    <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                  </div>
+                @else
+                  <div class="links m-b-md">
+                    <a href="{{ url('/login') }}">団員ログイン</a>
+                  </div>
+                  <div class="links m-b-md">
+                    <a href="{{ url('/admin/login') }}">管理者ログイン</a>
+                  </div>
+                @endif
             </div>
         </div>
     </body>
