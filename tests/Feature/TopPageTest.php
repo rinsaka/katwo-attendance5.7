@@ -53,7 +53,7 @@ class TopPageTest extends TestCase
 
     $response = $this->actingAs($user)
                       ->get('/home/')
-                      ->assertSee('You are logged in!')
+                      ->assertSee('神戸常磐')
                       ->assertSee('KatWO メンバー');
   }
 
