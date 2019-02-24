@@ -16,6 +16,11 @@
 
                     create
                 </div>
+                <div  class="card-footer">
+                  <p>
+                    This system is developed with <a href="https://laravel.com/">Laravel</a>, <a href="https://aws.amazon.com/jp/">AWS</a> and <a href="https://github.com/rinsaka/katwo-attendance5.7">GitHub</a>.
+                  </p>
+                </div>
             </div>
         </div>
     </div>
